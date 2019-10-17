@@ -1,3 +1,7 @@
+[build]
+    publish="dist"
+    command="nuxt generate"
+
 [build.environment]
     APIKEY="AIzaSyBnTZLaNThZv4OD_ikmJM-iBwTJ8_F3yYo"
     AUTHDOMAIN="speaker-note-stg.firebaseapp.com"
