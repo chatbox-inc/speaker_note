@@ -4,4 +4,4 @@
 
 Product Backlog 
 
-https://github.com/chatbox-inc/speaker_note/projects/1
+https://chatboxinc.backlog.jp/find/SPNOTE
