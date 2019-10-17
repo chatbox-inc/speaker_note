@@ -1,4 +1,3 @@
-[build.environment]
 APIKEY=AIzaSyBnTZLaNThZv4OD_ikmJM-iBwTJ8_F3yYo
 AUTHDOMAIN=speaker-note-stg.firebaseapp.com
 DATABASEURL=https://speaker-note-stg.firebaseio.com
