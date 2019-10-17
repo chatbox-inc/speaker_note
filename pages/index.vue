@@ -5,13 +5,21 @@
 </template>
 
 <script>
-import firebase from '~/plugins/firebase'
+import firebase from '@/plugins/firebase'
+import auth from '@/plugins/auth'
+import userMapper from '@/store/user.js'
 export default {
   components: {
   },
-  mounted(){
+  async mounted(){
+    const user = await auth()
+    if(user){
+      // this.SET_USER(user)
+      this.$router.push('/Top')
+    }
   },
   methods: {
+    ...userMapper.mapMutations(['SET_USER']),
     googleLogin(){
       firebase
         .auth()
