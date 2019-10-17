@@ -1,0 +1,9 @@
+[build.environment]
+APIKEY=AIzaSyBnTZLaNThZv4OD_ikmJM-iBwTJ8_F3yYo
+AUTHDOMAIN=speaker-note-stg.firebaseapp.com
+DATABASEURL=https://speaker-note-stg.firebaseio.com
+PROJECTID=speaker-note-stg
+STORAGEBUCKET=speaker-note-stg.appspot.com
+MESSAGINGSENDERID=180282909897
+APPID=1:180282909897:web:f511077c275062bd7c9918
+MEASUREMENTID=G-W81PGDZCNT
