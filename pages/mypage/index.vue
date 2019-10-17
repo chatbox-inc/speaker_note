@@ -2,7 +2,7 @@
     <section v-if="user">
         <button @click="logout">ログアウト</button>
         <div class="p-mypage">
-            <div class="row justify-content-start position-relative mb-5">
+            <div class="row position-relative mb-5">
                 <div class="">
                     <img :src="user.photoURL" alt="" class="p-mypage__thmb">
                 </div>
