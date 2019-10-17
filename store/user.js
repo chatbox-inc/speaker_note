@@ -13,10 +13,13 @@ export default {
         user: state => state.user
     },
     mutations: {
-        SET_USER(state,user){
-            state.user = user
+        setUser(state, {user}){
+            const { uid, email, photoURL, displayName } = user
+            state.user = { uid, email, photoURL, displayName }
         },
-        
+        initUser(state){
+            state.user = null
+        }
     },
     actions: {
         

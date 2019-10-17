@@ -1,31 +1,12 @@
 <template>
   <section class="container">
-    <button @click="googleLogin">GoogleLogin</button>
+    <nuxt-link to="/login">ログインページ</nuxt-link>
   </section>
 </template>
 
 <script>
-import firebase from '@/plugins/firebase'
-import auth from '@/plugins/auth'
-import userMapper from '@/store/user.js'
 export default {
-  components: {
-  },
-  async mounted(){
-    const user = await auth()
-    if(user){
-      // this.SET_USER(user)
-      this.$router.push('/Top')
-    }
-  },
-  methods: {
-    ...userMapper.mapMutations(['SET_USER']),
-    googleLogin(){
-      firebase
-        .auth()
-        .signInWithRedirect(new firebase.auth.GoogleAuthProvider());
-    }
-  }
+
 }
 </script>
 
