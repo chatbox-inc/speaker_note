@@ -1,11 +1,23 @@
 <template>
-  <div class="l-container">
-    <nuxt />
+  <div>
+    <l-header />
+    <div class="l-container">
+      <nuxt />
+    </div>
   </div>
 </template>
+<script>
+import lHeader from '@/components/Header'
+export default {
+  components: {
+    lHeader
+  }
+}
+</script>
 
 <style lang="scss">
 .l-container {
+  padding-top: 80px;
   max-width: 1024px;
   margin: 0 auto;
 }

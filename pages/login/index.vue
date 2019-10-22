@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <button @click="googleLogin">GoogleLogin</button>
+    <div class="c-login">
+        <a @click="googleLogin" href="#" >GoogleLogin</a>
     </div>
 </template>
 
@@ -28,5 +28,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.c-login {
+    width: 100%;
+    height: 100vh;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
 </style>
