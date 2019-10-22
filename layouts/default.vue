@@ -1,10 +1,26 @@
 <template>
   <div>
-    <nuxt />
+    <l-header />
+    <div class="l-container">
+      <nuxt />
+    </div>
   </div>
 </template>
+<script>
+import lHeader from '@/components/Header'
+export default {
+  components: {
+    lHeader
+  }
+}
+</script>
 
-<style>
+<style lang="scss">
+.l-container {
+  padding-top: 80px;
+  max-width: 1024px;
+  margin: 0 auto;
+}
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, 'Helvetica Neue', Arial, sans-serif;

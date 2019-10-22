@@ -26,7 +26,9 @@ export default {
       { hid: 'description', name: 'description', content: pkg.description }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: "stylesheet", href: "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css", integrity:"sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T", crossorigin: "anonymous"},
+      { rel: "stylesheet", href: "/boostwatch/bootstrap.min.css"}
     ]
   },
 
@@ -45,7 +47,7 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    
+    '@/plugins/vuelidate',
   ],
 
   /*
@@ -54,8 +56,6 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    // Doc: https://bootstrap-vue.js.org/docs/
-    'bootstrap-vue/nuxt',
     '@nuxtjs/dotenv',
   ],
   /*
