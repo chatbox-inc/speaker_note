@@ -1,6 +1,8 @@
 <template>
-    <div class="load">
-        <div class="bar"></div>
+    <div class="backdrop">
+        <div class="load">
+            <div class="bar"></div>
+        </div>
     </div>
 </template>
 
@@ -28,5 +30,15 @@ export default {
         background-color: #f5634a;
         width: 25px;
     }
+}
+.backdrop {
+    width: 100vw;
+    height: 100vh;
+    background: rgba($color: #fff, $alpha: 0.5);
+    position: fixed;
+    z-index:999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 </style>
