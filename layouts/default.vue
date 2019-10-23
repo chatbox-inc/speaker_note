@@ -1,6 +1,7 @@
 <template>
   <div>
     <l-header />
+    <l-loader v-if="loading"/>
     <div class="l-container">
       <nuxt />
     </div>
@@ -8,9 +9,15 @@
 </template>
 <script>
 import lHeader from '@/components/Header'
+import lLoader from '@/components/loader'
+import loaderMapper from '@/store/loading'
 export default {
   components: {
-    lHeader
+    lHeader,
+    lLoader
+  },
+  computed: {
+    ...loaderMapper.mapState(['loading'])
   }
 }
 </script>
@@ -21,6 +28,7 @@ export default {
   max-width: 1024px;
   margin: 0 auto;
 }
+
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, 'Helvetica Neue', Arial, sans-serif;

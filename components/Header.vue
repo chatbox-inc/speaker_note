@@ -8,7 +8,7 @@
             <div class="collapse navbar-collapse" id="navbarColor01" v-if="user">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Mypage <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="#"><nuxt-link to="/mypage">Mypage</nuxt-link><span class="sr-only">(current)</span></a>
                     </li>
                 </ul>
                 <button class="btn btn-secondary my-2 my-sm-0" type="submit" @click="logout">ログアウト</button>
