@@ -49,6 +49,7 @@ import firebase from '~/plugins/firebase'
 import auth from '~/plugins/auth'
 import userMapper from '@/store/user'
 import validations from '@/service/validations/stageInfo'
+import StageUsecase from '@/service/usecase/StageUsecase'
 
 export default {
     data(){
@@ -78,12 +79,21 @@ export default {
                 }
             }
         },
-        addInfo(){
+        async addInfo(){
             this.$v.form.$touch()
             if(this.$v.form.$invalid) {
                 console.error("エラー内容を確認してください。")
                 return ;
+            }try{
+                this.$loader.on()
+                const result = await new StageUsecase(this.$axios).create(this.form)
+                console.log(result)
+            }catch(error){
+                console.error(error)
+            }finally{
+                this.$loader.off()
             }
+            
         }
     },  
     async mounted() {

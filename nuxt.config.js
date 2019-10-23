@@ -48,6 +48,7 @@ export default {
   */
   plugins: [
     '@/plugins/vuelidate',
+    { src: '@/plugins/loading', ssr: false },
   ],
 
   /*

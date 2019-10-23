@@ -37,8 +37,10 @@ export default {
     background: rgba($color: #fff, $alpha: 0.5);
     position: fixed;
     z-index:999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+}
+.load {
+    position: absolute;
+    top: 45%;
+    left: 47%;
 }
 </style>
