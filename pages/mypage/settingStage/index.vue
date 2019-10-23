@@ -9,7 +9,7 @@
                     placeholder="タイトル"
                     @change="inputForm('title')" >
             </div>
-            <p class="p-error" v-if="!$v.form.title.required && $v.form.title.$dirty">タイトルは必須です</p>
+            <p class="text-danger" v-if="!$v.form.title.required && $v.form.title.$dirty">タイトルは必須です</p>
             <div class="form-group">
                 <textarea 
                     class="form-control" 
@@ -19,7 +19,7 @@
                     @change="inputForm('info')">
                 </textarea>
             </div>
-            <p class="p-error" v-if="!$v.form.info.required && $v.form.info.$dirty">タイトルは必須です</p>
+            <p class="text-danger" v-if="!$v.form.info.required && $v.form.info.$dirty">タイトルは必須です</p>
         </form>
         <div class="pl-3 mb-5">
             <h2 class="h3">イベント情報</h2>
@@ -119,8 +119,5 @@ export default {
     position: absolute;
     bottom: 0;
     right: 0;
-}
-.p-error {
-    color: red;
 }
 </style>

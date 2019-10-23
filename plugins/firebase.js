@@ -11,7 +11,6 @@ var firebaseConfig = {
     appId: process.env.APPID,
     measurementId: process.env.MEASUREMENTID
 };
-console.log(firebaseConfig)
   // Initialize Firebase
 if(!firebase.apps.length){
     firebase.initializeApp(firebaseConfig);
