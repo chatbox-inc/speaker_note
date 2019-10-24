@@ -1,36 +1,33 @@
 <template>
   <section class="p-top">
-      <a @click="googleLogin" href="#" >GoogleLogin</a>
+    <a href="#" @click="googleLogin">GoogleLogin</a>
   </section>
 </template>
 
 <script>
-import firebase from '@/plugins/firebase'
-import auth from '@/plugins/auth'
-import userMapper from '@/store/user.js'
+import firebase from "@/plugins/firebase"
+import userMapper from "@/store/user.js"
 
 export default {
-  name: "TOP",
+  name: "Top",
   layout: "guest",
-  async mounted(){
-    const user = await auth()
-    if(user){
-        this.setUser({user})
-        this.$router.push('/mypage')
+  async mounted() {
+    const user = await this.$_auth.auth()
+    if (user) {
+      this.setUser({ user })
+      this.$router.push("/mypage")
     }
   },
-    methods: {
-        ...userMapper.mapMutations(['setUser']),
-        googleLogin(){
-            firebase
-            .auth()
-            .signInWithRedirect(new firebase.auth.GoogleAuthProvider());
-        }
+  methods: {
+    ...userMapper.mapMutations(["setUser"]),
+    googleLogin() {
+      firebase.auth().signInWithRedirect(new firebase.auth.GoogleAuthProvider())
     }
+  }
 }
 </script>
 
-<style　lang="scss" scoped>
+<style lang="scss" scoped>
 .p-top {
   height: 100vh;
   display: flex;

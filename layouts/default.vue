@@ -1,27 +1,21 @@
 <template>
   <div>
-      <nuxt />
+    <nuxt />
   </div>
 </template>
 <script>
-import lHeader from '@/components/Header'
-import lLoader from '@/components/loader'
-import loaderMapper from '@/store/loading'
+import loaderMapper from "@/store/loading"
 export default {
-  components: {
-    lHeader,
-    lLoader
-  },
   computed: {
-    ...loaderMapper.mapState(['loading'])
+    ...loaderMapper.mapState(["loading"])
   }
 }
 </script>
 
 <style lang="scss">
 html {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;

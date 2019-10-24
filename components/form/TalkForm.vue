@@ -1,5 +1,5 @@
 <template>
-  <section v-if="user">
+  <section>
     <h1 class="h3 mb-4">
       登壇情報
     </h1>
@@ -26,7 +26,9 @@
           rows="5"
           placeholder="登壇情報入力"
           @change="inputForm('info')"
-        />
+        >
+        >
+        </textarea>
       </div>
       <p
         v-if="!$v.form.info.required && $v.form.info.$dirty"
@@ -78,12 +80,9 @@
 </template>
 
 <script>
-import userMapper from "@/store/user"
 import validations from "@/service/validations/stageInfo"
-import StageUsecase from "@/service/usecase/StageUsecase"
 
 export default {
-  layout: "mypage",
   data() {
     return {
       form: {
@@ -92,23 +91,7 @@ export default {
       }
     }
   },
-  computed: {
-    ...userMapper.mapGetters(["user"])
-  },
-  async asyncData({ params, $axios }) {
-    const event = await new StageUsecase($axios).get(params.id)
-    return {
-      team_id: event.team_id,
-      connoass_event_id: event.connoass_event_id,
-      event_name: event.event_name,
-      event_start_at: event.event_start_at,
-      event_end_at: event.event_end_at,
-      address: event.address,
-      params
-    }
-  },
   methods: {
-    ...userMapper.mapMutations(["initUser", "setUser"]),
     inputForm(name) {
       if (name === "title") {
         this.$v.form.title.$touch()
@@ -128,14 +111,6 @@ export default {
       if (this.$v.form.$invalid) {
         console.error("エラー内容を確認してください。")
         return
-      }
-      try {
-        this.$loader.on()
-        await new StageUsecase(this.$axios).create(this.form)
-      } catch (error) {
-        console.error(error)
-      } finally {
-        this.$loader.off()
       }
     }
   },

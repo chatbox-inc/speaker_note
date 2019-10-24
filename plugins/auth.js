@@ -1,11 +1,18 @@
-import firebase from '~/plugins/firebase'
+import firebase from "~/plugins/firebase"
 
-function auth(){
-    return new Promise((resolve, reject) => {
+export default (ctx, inject) => {
+  inject("_auth", {
+    // 認証中のユーザを取得する
+    auth() {
+      return new Promise(resolve => {
         firebase.auth().onAuthStateChanged(user => {
-            resolve(user || false)
+          resolve(user || false)
         })
-    })
+      })
+    },
+    // ログイン処理を記述
+    login() {},
+    // ログアウト処理を記述
+    logout() {}
+  })
 }
-
-export default auth
