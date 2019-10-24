@@ -28,24 +28,18 @@ import firebase from '~/plugins/firebase'
 import auth from '~/plugins/auth'
 import userMapper from '@/store/user'
 export default {
+    name: 'mypage',
+    layout: "mypage",
     methods: {
-        ...userMapper.mapMutations(['initUser','setUser']),
+        ...userMapper.mapMutations(['initUser']),
         logout(){
             firebase.auth().signOut()
             this.initUser()
-            this.$router.push('/login')
+            this.$router.push('/')
         }
     },
     computed: {
         ...userMapper.mapGetters(['user'])
-    },
-    async mounted(){
-        const user = await auth()
-        if(user){
-            this.setUser({user})
-        }else {
-            this.$router.push('/login')
-        }
     }
 }
 </script>

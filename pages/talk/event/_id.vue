@@ -1,6 +1,6 @@
 <template>
     <section v-if="user" class="p-settingStage">
-        <h1 class="h3">登壇情報</h1>
+        <h1 class="h3 mb-4">登壇情報</h1>
         <form action="" class="mb-5">
             <div class="form-group">
                 <input type="text" 
@@ -22,16 +22,19 @@
             <p class="text-danger" v-if="!$v.form.info.required && $v.form.info.$dirty">タイトルは必須です</p>
         </form>
         <div class="pl-3 mb-5">
-            <h2 class="h3">イベント情報</h2>
-            <p>2019/10/01   chatbox 勉強会       ↓ 大阪</p>
+            <h2 class="h3 mb-3">イベント情報</h2>
+            <dt class="float-left mr-2">日時:</dt>
+            <dd>{{event_start_at}}</dd>
+            <dt class="float-left mr-2">場所:</dt>
+            <dd>{{address}}</dd>
         </div>
         <div class="mb-5 pl-2">
-            <h2 class="h3">登壇者情報</h2>
+            <h2 class="h3 mb-5">登壇者情報</h2>
             <div class="row position-relative">
-                <div class="">
-                    <img :src="user.photoURL" alt="" class="p-settingStage__profThmb">
+                <div class="col-3">
+                    <img :src="user.photoURL" alt="" class="img-fluid rounded-circle">
                 </div>
-                <div class="pl-5 pt-4 ">
+                <div class="pt-4 col-9">
                     <p class="p-settingStage__profName">{{user.displayName}}</p>
                     <p class="p-settingStage__profComp">株式会社hogehoge</p>
                 </div>
@@ -52,6 +55,19 @@ import validations from '@/service/validations/stageInfo'
 import StageUsecase from '@/service/usecase/StageUsecase'
 
 export default {
+    layout: "mypage",
+    async asyncData({params, $axios}){
+        const event  = await new StageUsecase($axios).get(params.id) 
+        return {
+            team_id: event.team_id,
+            connoass_event_id: event.connoass_event_id,
+            event_name: event.event_name,
+            event_start_at: event.event_start_at,
+            event_end_at: event.event_end_at,
+            address: event.address,
+            params
+        }
+    },
     data(){
         return {
             form: {
@@ -87,7 +103,6 @@ export default {
             }try{
                 this.$loader.on()
                 const result = await new StageUsecase(this.$axios).create(this.form)
-                console.log(result)
             }catch(error){
                 console.error(error)
             }finally{
@@ -95,26 +110,12 @@ export default {
             }
             
         }
-    },  
-    async mounted() {
-        const user = await auth()
-        if(user){
-            this.setUser({user})
-        }else {
-            this.$router.push('/login')
-        }
     },
     validations
 }
 </script>
 
 <style lang="scss" scoped>
-.p-settingStage {
-    &__profThmb {
-        width: 200px;
-        border-radius: 50%;
-    }
-}
 .p-link {
     position: absolute;
     bottom: 0;

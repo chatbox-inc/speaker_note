@@ -1,10 +1,6 @@
 <template>
   <div>
-    <l-header />
-    <l-loader v-if="loading"/>
-    <div class="l-container">
       <nuxt />
-    </div>
   </div>
 </template>
 <script>
@@ -23,12 +19,6 @@ export default {
 </script>
 
 <style lang="scss">
-.l-container {
-  padding-top: 80px;
-  max-width: 1024px;
-  margin: 0 auto;
-}
-
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, 'Helvetica Neue', Arial, sans-serif;
