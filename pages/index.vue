@@ -13,15 +13,18 @@ export default {
   layout: "guest",
   async mounted() {
     const user = await this.$_auth.auth()
-    if (user) {
-      this.setUser({ user })
-      this.$router.push("/mypage")
-    }
   },
   methods: {
     ...userMapper.mapMutations(["setUser"]),
-    googleLogin() {
-      firebase.auth().signInWithRedirect(new firebase.auth.GoogleAuthProvider())
+    async googleLogin() {
+      const provider = new firebase.auth.GoogleAuthProvider()
+      provider.addScope("https://www.googleapis.com/auth/userinfo.email")
+      const {user} = await firebase.auth().signInWithPopup(provider)
+      if (user) {
+        this.setUser({ user })
+        this.$router.push("/mypage")
+      }
+
     }
   }
 }

@@ -1,23 +1,28 @@
 import { createNamespacedHelpers } from "vuex"
+import {getProfile} from "~/service/usecase/loginUsecase";
+
+export const dispatchLoginAction = ($store) => $store.dispatch("user/LOGIN")
 
 export default {
   ...createNamespacedHelpers("user"),
   state() {
     return {
-      user: null
+      user: null //ユーザ情報
     }
   },
-  getters: {
-    user: state => state.user
-  },
   mutations: {
-    setUser(state, { user }) {
-      const { uid, email, photoURL, displayName } = user
-      state.user = { uid, email, photoURL, displayName }
+    SET_USER(state, { user }) {
+      state.user = user
     },
     initUser(state) {
       state.user = null
     }
   },
-  actions: {}
+  actions: {
+    async LOGIN({commit}){
+      const {user} = await getProfile(app.$axios)
+      commit("SET_USER",user)
+
+    }
+  }
 }

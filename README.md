@@ -16,6 +16,10 @@ API Repository
 
 https://github.com/chatbox-inc/speaker_note_api 
 
+Nuxt.js のコード規約として 以下を参照
+
+https://github.com/chatbox-inc/nuxtjs_guideline
+
 ## Build Setup
 
 ``` bash
