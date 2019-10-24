@@ -13,12 +13,12 @@ export default {
   name: "TOP",
   layout: "guest",
   async mounted(){
-        const user = await auth()
-        if(user){
-            this.setUser({user})
-            this.$router.push('/mypage')
-        }
-    },
+    const user = await auth()
+    if(user){
+        this.setUser({user})
+        this.$router.push('/mypage')
+    }
+  },
     methods: {
         ...userMapper.mapMutations(['setUser']),
         googleLogin(){

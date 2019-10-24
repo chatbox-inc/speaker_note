@@ -22,6 +22,7 @@ export default {
     max-width: 1024px;
     margin:  0 auto;
     height: 100%;
+    padding-top: 80px;
 }
 html {
     font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
