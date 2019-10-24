@@ -1,24 +1,24 @@
 <template>
-  <div>
+  <div v-if="event">
     <div class="row justify-content-center mt-5">
       <div class="col-sm-8">
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">
-              {{ event_name }}
+              {{ event.title }}
             </h5>
             <dl class="mb-4">
               <dt class="float-left mr-2">
                 日時:
               </dt>
-              <dd>{{ event_start_at }}</dd>
+              <dd>{{ event.event_start_at }}</dd>
               <dt class="float-left mr-2">
                 場所:
               </dt>
-              <dd>{{ address }}</dd>
+              <dd>{{ event.address }}</dd>
             </dl>
             <div class="text-center">
-              <a :href="event_url" class="btn btn-dark" target="_blank">
+              <a :href="event.event_url" class="btn btn-dark" target="_blank">
                 connpass
               </a>
             </div>
@@ -26,7 +26,7 @@
         </div>
         <div class="text-center mt-5">
           <router-link
-            :to="{ path: `/talk/event/${params.id}` }"
+            :to="{ path: `/talk/event/${event_id}` }"
             class="btn btn-dark mt-4"
           >
             このイベントに登壇情報を追加
@@ -38,24 +38,27 @@
 </template>
 
 <script>
-import StageUsecase from "@/service/usecase/StageUsecase"
+import eventMapper from "~/store/event"
 
 export default {
-  async asyncData({ params, $axios }) {
-    const event = await new StageUsecase($axios).get(params.id)
+  layout: "guest",
+  data() {
     return {
-      id: event.id,
-      team_id: event.team_id,
-      connoass_event_id: event.connoass_event_id,
-      event_name: event.event_name,
-      event_url: event.event_url,
-      event_start_at: event.event_start_at,
-      event_end_at: event.event_end_at,
-      address: event.address,
-      params
+      event: null
     }
   },
-  layout: "guest"
+  computed: {
+    event_id() {
+      return this.$route.params.id
+    }
+  },
+  async mounted() {
+    await this.$_auth.auth()
+    this.event = await this.loadEvent({ id: this.event_id })
+  },
+  methods: {
+    ...eventMapper.mapActions(["loadEvent"])
+  }
 }
 </script>
 

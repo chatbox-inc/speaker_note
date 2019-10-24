@@ -15,7 +15,7 @@
       </div>
     </div>
 
-    <section>
+    <section class="mb-5">
       <h2 class="h4 mb-4">
         トーク情報
       </h2>
@@ -26,7 +26,6 @@
           class="form-control"
           type="text"
           maxlength="20"
-          @change="inputForm('talk_title')"
         />
       </div>
       <val-message name="talk_title" :v="$v">
@@ -35,10 +34,9 @@
       <div class="form-group">
         <label>トーク詳細</label>
         <textarea
-          class="form-control"
           v-model="$v.form.talk_summary.$model"
+          class="form-control"
           rows="5"
-          @change="inputForm('talk_summary')"
         />
       </div>
       <val-message name="talk_summary" :v="$v">
@@ -46,29 +44,56 @@
       </val-message>
     </section>
 
-    <section class="mb-5 pl-2">
-      <h2 class="h3 mb-5">
+    <section class="mb-5">
+      <h2 class="h4 mb-4">
         登壇者情報
       </h2>
       <div class="row position-relative">
         <div class="col-3">
-          <img :src="$v.form.user_img.$model" alt="" class="img-fluid rounded-circle" />
+          <img
+            :src="$v.form.user_img.$model"
+            alt=""
+            class="img-fluid rounded-circle"
+          />
         </div>
         <div class="pt-4 col-9">
-          <p class="p-settingStage__profName">
-            {{ $v.form.user_name.$model }}
-          </p>
-          <p class="p-settingStage__profComp">
-            {{ $v.form.user_title.$model }}
-          </p>
+          <div class="form-group">
+            <label>登壇者名</label>
+            <input
+              v-model="$v.form.user_name.$model"
+              class="form-control"
+              type="text"
+              maxlength="20"
+            />
+          </div>
+          <val-message name="user_name" :v="$v">
+            登壇者名を入力してください。
+          </val-message>
+          <div class="form-group">
+            <label>肩書・所属</label>
+            <input
+              v-model="$v.form.user_title.$model"
+              class="form-control"
+              type="text"
+              maxlength="20"
+            />
+          </div>
+          <div class="form-group">
+            <label>プロフィール</label>
+            <textarea
+              v-model="$v.form.user_profile.$model"
+              class="form-control"
+              rows="5"
+            />
+          </div>
+          <val-message name="user_profile" :v="$v">
+            登壇者プロフィールを入力してください。
+          </val-message>
         </div>
-        <nuxt-link to="/mypage" class="p-link">
-          戻る
-        </nuxt-link>
       </div>
     </section>
     <div class="text-center">
-      <button class="btn btn-primary text-center" @click="addInfo">
+      <button class="btn btn-primary text-center" @click="submit">
         追加する
       </button>
     </div>
@@ -84,10 +109,6 @@ export default {
     ValMessage
   },
   props: {
-    user: {
-      type: Object,
-      required: true
-    },
     event: {
       type: Object,
       required: true
@@ -95,30 +116,26 @@ export default {
     origin: {
       type: Object,
       required: true
-    },
+    }
   },
   data() {
     return {
       form: null
     }
   },
-  mounted(){
+  mounted() {
     this.form = {
-      ...origin,
+      ...this.origin
     }
   },
   methods: {
-    inputForm(key) {
-      // this.$v.form[key].$touch()
-      // if (this.$v.form[key].$invalid) {
-      //   return
-      // }
-    },
-    async addInfo() {
+    async submit() {
       this.$v.form.$touch()
       if (this.$v.form.$invalid) {
         console.error("エラー内容を確認してください。")
         return
+      } else {
+        this.$emit("submit", this.form)
       }
     }
   },

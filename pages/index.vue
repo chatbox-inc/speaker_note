@@ -1,30 +1,49 @@
 <template>
   <section class="p-top">
-    <a href="#" @click="googleLogin">GoogleLogin</a>
+    <div class="jumbotron">
+      <h1 class="display-4">
+        Speaker Note
+      </h1>
+      <p class="lead">
+        This is a simple hero unit, a simple jumbotron-style component for
+        calling extra attention to featured content or information.
+      </p>
+      <hr class="my-4" />
+      <p>
+        It uses utility classes for typography and spacing to space content out
+        within the larger container.
+      </p>
+      <a class="btn btn-primary btn-lg" tabindex="0" @click="googleLogin">
+        Login with Google
+      </a>
+    </div>
+
+    <div>
+      <h3>注目のイベント</h3>
+      <router-link to="/event/150932">
+        イベントページ
+      </router-link>
+    </div>
   </section>
 </template>
 
 <script>
-import firebase from "@/plugins/firebase"
-import userMapper from "@/store/user.js"
+import firebase from "~/service/firebase"
 
 export default {
   name: "Top",
   layout: "guest",
   async mounted() {
-    const user = await this.$_auth.auth()
+    await this.$_auth.auth()
   },
   methods: {
-    ...userMapper.mapMutations(["setUser"]),
     async googleLogin() {
       const provider = new firebase.auth.GoogleAuthProvider()
       provider.addScope("https://www.googleapis.com/auth/userinfo.email")
-      const {user} = await firebase.auth().signInWithPopup(provider)
+      const { user } = await firebase.auth().signInWithPopup(provider)
       if (user) {
-        this.setUser({ user })
         this.$router.push("/mypage")
       }
-
     }
   }
 }
@@ -32,9 +51,5 @@ export default {
 
 <style lang="scss" scoped>
 .p-top {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 </style>

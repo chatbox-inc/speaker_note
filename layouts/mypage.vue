@@ -1,7 +1,7 @@
 <template>
   <div>
     <l-header />
-    <div class="l-container">
+    <div v-show="user" class="l-container">
       <nuxt />
     </div>
   </div>
@@ -9,21 +9,24 @@
 
 <script>
 import lHeader from "~/components/Header"
-import userMapper from "~/store/user"
 export default {
   components: {
     lHeader
   },
-  async mounted() {
-    const user = await this.$_auth.auth()
-    if (user) {
-      this.setUser({ user })
-    } else {
-      this.$router.push("/")
+  data() {
+    return {
+      user: null
     }
   },
-  methods: {
-    ...userMapper.mapMutations(["setUser"])
+  async mounted() {
+    console.log("mounted")
+    const user = await this.$_auth.auth()
+    console.log("mounted")
+    if (!user) {
+      this.$router.push("/")
+    } else {
+      this.user = user
+    }
   }
 }
 </script>

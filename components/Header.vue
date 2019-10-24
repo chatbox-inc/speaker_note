@@ -1,7 +1,9 @@
 <template>
   <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-      <a class="navbar-brand" href="#">speaker note stg</a>
+      <router-link class="navbar-brand" to="/">
+        speaker note stg
+      </router-link>
       <button
         class="navbar-toggler"
         type="button"
@@ -13,7 +15,7 @@
       >
         <span class="navbar-toggler-icon" />
       </button>
-      <div v-if="user" id="navbarColor01" class="collapse navbar-collapse">
+      <div id="navbarColor01" class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
             <nuxt-link class="nav-link" to="/mypage">
@@ -26,34 +28,12 @@
             </router-link>
           </li>
         </ul>
-        <button
-          class="btn btn-secondary my-2 my-sm-0"
-          type="submit"
-          @click="logout"
-        >
-          ログアウト
-        </button>
       </div>
     </nav>
   </header>
 </template>
 <script>
-import userMapper from "@/store/user"
-import firebase from "@/plugins/firebase"
-
-export default {
-  computed: {
-    ...userMapper.mapGetters(["user"])
-  },
-  methods: {
-    ...userMapper.mapMutations(["initUser"]),
-    logout() {
-      firebase.auth().signOut()
-      this.initUser()
-      this.$router.push("/login")
-    }
-  }
-}
+export default {}
 </script>
 
 <style lang="scss"></style>

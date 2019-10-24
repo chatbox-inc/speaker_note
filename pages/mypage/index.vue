@@ -1,13 +1,13 @@
 <template>
-  <section v-if="user">
+  <div v-if="user">
     <div class="p-mypage">
       <div class="row position-relative mb-5">
         <div class="">
-          <img :src="user.photoURL" alt="" class="p-mypage__thmb" />
+          <img :src="user.avatar_url" alt="" class="p-mypage__thmb" />
         </div>
         <div class="pl-5 pt-4 ">
           <p class="p-mypage__name">
-            {{ user.displayName }}
+            {{ user.name }}
           </p>
           <p class="p-mypage__comp">
             株式会社hogehoge
@@ -24,33 +24,40 @@
         登壇情報
       </h2>
       <ul class="list-group mb-3">
-        <li class="list-group-item list-group-item-dark">
-          <span class="mr-2">10/01</span>さんまの焼き方の話
-        </li>
-        <li class="list-group-item list-group-item-dark">
-          <span class="mr-2">10/01</span>さんまの焼き方の話
-        </li>
-        <li class="list-group-item list-group-item-dark">
-          <span class="mr-2">10/01</span>さんまの焼き方の話
+        <li
+          v-for="talk in talklist"
+          :key="talk.code"
+          class="list-group-item list-group-item-dark"
+          @click="$router.push(`/talk/edit/${talk.code}`)"
+        >
+          <span class="mr-2">10/01</span>{{ talk.talk_title }}
         </li>
       </ul>
       <h2 class="h3">
         管理イベント
       </h2>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
-import userMapper from "@/store/user"
+import talkMapper from "@/store/talk"
 export default {
   name: "Mypage",
   layout: "mypage",
-  computed: {
-    ...userMapper.mapGetters(["user"])
+  data() {
+    return {
+      user: null,
+      talklist: []
+    }
+  },
+  async mounted() {
+    this.user = await this.$_auth.auth()
+    const { talks } = await this.loadTalkList()
+    this.talklist = talks
   },
   methods: {
-    ...userMapper.mapMutations(["initUser"])
+    ...talkMapper.mapActions(["loadTalkList"])
   }
 }
 </script>
