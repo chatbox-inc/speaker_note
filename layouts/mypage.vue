@@ -23,7 +23,7 @@ export default {
         if(user){
             this.setUser({user})
         }else {
-            this.$router.push('/login')
+            this.$router.push('/')
         }
     }
 }

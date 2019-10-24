@@ -52,6 +52,7 @@ import validations from '@/service/validations/stageInfo'
 import StageUsecase from '@/service/usecase/StageUsecase'
 
 export default {
+    layout: "mypage",
     data(){
         return {
             form: {
@@ -87,21 +88,12 @@ export default {
             }try{
                 this.$loader.on()
                 const result = await new StageUsecase(this.$axios).create(this.form)
-                console.log(result)
             }catch(error){
                 console.error(error)
             }finally{
                 this.$loader.off()
             }
             
-        }
-    },  
-    async mounted() {
-        const user = await auth()
-        if(user){
-            this.setUser({user})
-        }else {
-            this.$router.push('/login')
         }
     },
     validations
