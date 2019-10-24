@@ -57,7 +57,7 @@ import StageUsecase from '@/service/usecase/StageUsecase'
 export default {
     layout: "mypage",
     async asyncData({params, $axios}){
-        const { event } = await $axios.$get(`https://speaker-note.herokuapp.com/spnote/event/${params.id}`) 
+        const event  = await new StageUsecase($axios).get(params.id) 
         return {
             team_id: event.team_id,
             connoass_event_id: event.connoass_event_id,
