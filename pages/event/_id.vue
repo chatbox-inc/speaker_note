@@ -16,9 +16,10 @@
 </template>
 
 <script>
+import StageUsecase from '@/service/usecase/StageUsecase'
 export default {
     async asyncData({params,$axios}) {
-        const { event } = await $axios.$get(`https://speaker-note.herokuapp.com/spnote/event/${params.id}`) 
+        const event  = await new StageUsecase($axios).get(params.id) 
         return {
             id: event.id,
             team_id: event.team_id,
@@ -32,7 +33,6 @@ export default {
         }
     },
     layout: 'guest',
-    
 }
 </script>
 
