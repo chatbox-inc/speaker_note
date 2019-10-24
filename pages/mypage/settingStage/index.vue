@@ -26,12 +26,12 @@
             <p>2019/10/01   chatbox 勉強会       ↓ 大阪</p>
         </div>
         <div class="mb-5 pl-2">
-            <h2 class="h3">登壇者情報</h2>
+            <h2 class="h3 mb-5">登壇者情報</h2>
             <div class="row position-relative">
-                <div class="">
-                    <img :src="user.photoURL" alt="" class="p-settingStage__profThmb">
+                <div class="col-3">
+                    <img :src="user.photoURL" alt="" class="img-fluid rounded-circle">
                 </div>
-                <div class="pl-5 pt-4 ">
+                <div class="pt-4 col-9">
                     <p class="p-settingStage__profName">{{user.displayName}}</p>
                     <p class="p-settingStage__profComp">株式会社hogehoge</p>
                 </div>
@@ -109,12 +109,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.p-settingStage {
-    &__profThmb {
-        width: 200px;
-        border-radius: 50%;
-    }
-}
 .p-link {
     position: absolute;
     bottom: 0;
