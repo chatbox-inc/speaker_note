@@ -1,6 +1,6 @@
 <template>
     <section v-if="user" class="p-settingStage">
-        <h1 class="h3">登壇情報</h1>
+        <h1 class="h3 mb-4">登壇情報</h1>
         <form action="" class="mb-5">
             <div class="form-group">
                 <input type="text" 
@@ -22,8 +22,11 @@
             <p class="text-danger" v-if="!$v.form.info.required && $v.form.info.$dirty">タイトルは必須です</p>
         </form>
         <div class="pl-3 mb-5">
-            <h2 class="h3">イベント情報</h2>
-            <p>2019/10/01   chatbox 勉強会       ↓ 大阪</p>
+            <h2 class="h3 mb-3">イベント情報</h2>
+            <dt class="float-left mr-2">日時:</dt>
+            <dd>{{event_start_at}}</dd>
+            <dt class="float-left mr-2">場所:</dt>
+            <dd>{{address}}</dd>
         </div>
         <div class="mb-5 pl-2">
             <h2 class="h3 mb-5">登壇者情報</h2>
@@ -53,6 +56,18 @@ import StageUsecase from '@/service/usecase/StageUsecase'
 
 export default {
     layout: "mypage",
+    async asyncData({params, $axios}){
+        const { event } = await $axios.$get(`https://speaker-note.herokuapp.com/spnote/event/${params.id}`) 
+        return {
+            team_id: event.team_id,
+            connoass_event_id: event.connoass_event_id,
+            event_name: event.event_name,
+            event_start_at: event.event_start_at,
+            event_end_at: event.event_end_at,
+            address: event.address,
+            params
+        }
+    },
     data(){
         return {
             form: {

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <nuxt-link to="/mypage/settingStage" class="btn btn-dark float-right mt-4">登壇情報を追加</nuxt-link>
+        <router-link :to="{path: `/talk/event/${params.id}`}" class="btn btn-dark float-right mt-4">登壇情報を追加</router-link>
         <h1 class="mb-5">{{event_name}}</h1>
         <img src="~assets/images/event_sample.png" class="img-fluid mb-5" alt="Responsive image">
         <dl class="mb-5">
@@ -27,7 +27,8 @@ export default {
             event_url: event.event_url,
             event_start_at: event.event_start_at,
             event_end_at: event.event_end_at,
-            address: event.address
+            address: event.address,
+            params
         }
     },
     layout: 'guest',
