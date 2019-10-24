@@ -1,10 +1,20 @@
 # speaker_note
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/7795a93e-176f-4806-b2c0-585f3be94a7d/deploy-status)](https://app.netlify.com/sites/speakernote-stg/deploys)
+
 登壇情報集約プラットフォーム
+
+Netlify 
+
+https://speakernote-stg.netlify.com/
 
 Product Backlog 
 
 https://chatboxinc.backlog.jp/find/SPNOTE
+
+API Repository 
+
+https://github.com/chatbox-inc/speaker_note_api 
 
 ## Build Setup
 

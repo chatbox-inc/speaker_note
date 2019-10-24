@@ -34,6 +34,7 @@ paths:
       登壇ステータスに応じて登壇情報の削除も可能
   /event/{event_id}:
     name: イベントページ
+    layout: guest
     description: |
       イベントの情報を表示する。
       登壇情報新規登録画面への動線を提供する。
