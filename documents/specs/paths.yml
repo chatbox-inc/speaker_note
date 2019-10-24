@@ -21,16 +21,24 @@ paths:
     description: |
       ログイン後の着地点。
       自身のプロフィールと、登壇リストを表示する。
+  /profile:
+    name: プロフィール情報編集画面
+    layout: mypage
+    description: |
+      画像の編集は未実装でOK
+      項目は都度都度UPDATEする方式
   /talk/event/{event_id}:
     name: 登壇情報新規登録画面
     layout: mypage
     description: |
+      イベント情報の編集はできない。
       イベントに紐づく登壇情報を新規に登録する。
   /talk/edit/{talk_id}:
     name: 登壇情報編集画面
     layout: mypage
     description: |
       作成済みの登壇情報を編集できる。
+      イベント情報の編集はできない。
       登壇ステータスに応じて登壇情報の削除も可能
   /event/{event_id}:
     name: イベントページ
@@ -38,4 +46,24 @@ paths:
     description: |
       イベントの情報を表示する。
       登壇情報新規登録画面への動線を提供する。
+  /group/{group_id}:
+    name: グループトップ
+    layout: mypage
+    description: |
+      グループ情報を表示する。
+      グループ管理者一覧を表示する。
+      イベント一覧を表示する。
+      イベント管理者追加導線を提供する。
+      イベント新規登録動線を提供する。
+  /group/{group_id}/event/{event_id}:
+    name: イベント管理トップ
+    layout: guest
+    description: |
+      登壇一覧を表示する
+      登壇一覧に対して承認等のステータス変更権限を有する
+      登壇一覧から OGP 画像を生成できる。
+      登壇一覧から 登壇一覧を生成できる。
+
+
+
 
