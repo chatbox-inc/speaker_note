@@ -1,0 +1,40 @@
+layout:
+  - default:
+      summary: |
+        デフォルトのlayout。使用しない
+  - guest:
+      summary: |
+        ログインなしでも表示可能なページ
+  - mypage:
+      summary: |
+        ログインが必要なページ
+paths:
+  /:
+    name: トップページ
+    layout: guest
+    description: |
+      ログイン動線の提供
+      ログイン後はマイページに遷移する
+  /mypage:
+    name: マイページ
+    layout: mypage
+    description: |
+      ログイン後の着地点。
+      自身のプロフィールと、登壇リストを表示する。
+  /talk/event/{event_id}:
+    name: 登壇情報新規登録画面
+    layout: mypage
+    description: |
+      イベントに紐づく登壇情報を新規に登録する。
+  /talk/edit/{talk_id}:
+    name: 登壇情報編集画面
+    layout: mypage
+    description: |
+      作成済みの登壇情報を編集できる。
+      登壇ステータスに応じて登壇情報の削除も可能
+  /event/{event_id}:
+    name: イベントページ
+    description: |
+      イベントの情報を表示する。
+      登壇情報新規登録画面への動線を提供する。
+
