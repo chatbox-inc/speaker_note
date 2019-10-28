@@ -93,9 +93,11 @@
       </div>
     </section>
     <div class="text-center">
-      <button class="btn btn-primary text-center" @click="submit">
+      <button class="add-button btn btn-primary text-center" @click="submit">
         追加する
       </button>
+      <br>
+      <DeleteModal></DeleteModal>
     </div>
   </section>
 </template>
@@ -103,10 +105,12 @@
 <script>
 import validations from "~/service/validations/talkform"
 import ValMessage from "~/components/form/ValMessage.vue"
+import DeleteModal from "~/components/DeleteModal.vue"
 
 export default {
   components: {
-    ValMessage
+    ValMessage,
+    DeleteModal
   },
   props: {
     event: {
@@ -143,4 +147,5 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+</style>
