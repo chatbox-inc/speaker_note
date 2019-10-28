@@ -42,6 +42,7 @@
 
 <script>
 import talkMapper from "@/store/talk"
+// import userMapper from "@/store/user"
 export default {
   name: "Mypage",
   layout: "mypage",
@@ -50,6 +51,9 @@ export default {
       user: null,
       talklist: []
     }
+  },
+  computed: {
+    // ...userMapper.mapState(["user"])
   },
   async mounted() {
     this.user = await this.$_auth.auth()

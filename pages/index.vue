@@ -37,12 +37,15 @@ export default {
     await this.$_auth.auth()
   },
   methods: {
-    async googleLogin() {
-      const provider = new firebase.auth.GoogleAuthProvider()
-      provider.addScope("https://www.googleapis.com/auth/userinfo.email")
-      const { user } = await firebase.auth().signInWithPopup(provider)
-      if (user) {
-        this.$router.push("/mypage")
+    async googleLogin(){
+      const user = await this.$_auth.login()
+      if(user){
+        const path = this.$route.query.redirect
+        if(path){
+          this.$router.push(path)
+        }else {
+          this.$router.push("/mypage")
+        }
       }
     }
   }

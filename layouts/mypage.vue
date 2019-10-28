@@ -23,7 +23,7 @@ export default {
     const user = await this.$_auth.auth()
     console.log("mounted")
     if (!user) {
-      this.$router.push("/")
+      this.$router.push({ path: '/', query: {redirect: this.$route.path}})
     } else {
       this.user = user
     }
