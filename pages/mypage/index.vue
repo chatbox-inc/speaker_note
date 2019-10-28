@@ -17,7 +17,7 @@
           プロフィール編集
         </nuxt-link>
       </div>
-      <nuxt-link to="/mypage/settingStage" class="btn btn-dark float-right">
+      <nuxt-link to="/talk/event/150932" class="btn btn-dark float-right">
         登壇情報を追加
       </nuxt-link>
       <h2 class="mb-3 h3">
@@ -42,7 +42,6 @@
 
 <script>
 import talkMapper from "@/store/talk"
-// import userMapper from "@/store/user"
 export default {
   name: "Mypage",
   layout: "mypage",
@@ -51,9 +50,6 @@ export default {
       user: null,
       talklist: []
     }
-  },
-  computed: {
-    // ...userMapper.mapState(["user"])
   },
   async mounted() {
     this.user = await this.$_auth.auth()

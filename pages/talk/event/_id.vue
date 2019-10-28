@@ -28,14 +28,16 @@ export default {
   },
   async mounted() {
     const user = await this.$_auth.auth()
-    this.event = await this.loadEvent({ id: this.event_id })
-    this.form = {
-      talk_title: "",
-      talk_summary: "",
-      user_name: user.name,
-      user_img: user.avatar_url,
-      user_title: user.title,
-      user_profile: user.profile
+    if (user) {
+      this.event = await this.loadEvent({ id: this.event_id })
+      this.form = {
+        talk_title: "",
+        talk_summary: "",
+        user_name: user.name,
+        user_img: user.avatar_url,
+        user_title: user.title,
+        user_profile: user.profile
+      }
     }
   },
   methods: {
