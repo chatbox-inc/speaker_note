@@ -28,8 +28,6 @@
 </template>
 
 <script>
-import firebase from "~/service/firebase"
-
 export default {
   name: "Top",
   layout: "guest",
@@ -37,13 +35,13 @@ export default {
     await this.$_auth.auth()
   },
   methods: {
-    async googleLogin(){
+    async googleLogin() {
       const user = await this.$_auth.login()
-      if(user){
+      if (user) {
         const path = this.$route.query.redirect
-        if(path){
+        if (path) {
           this.$router.push(path)
-        }else {
+        } else {
           this.$router.push("/mypage")
         }
       }

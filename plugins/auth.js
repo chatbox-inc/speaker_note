@@ -11,7 +11,7 @@ export default ({ app, store }, inject) => {
           console.log("auth state changed", user)
           if (user) {
             const idToken = await firebase.auth().currentUser.getIdToken()
-            console.log(idToken,app)
+            console.log(idToken, app)
             app.$axios.setToken(idToken, "Bearer")
             resolve(await dispatchLoginAction(store))
           } else {
