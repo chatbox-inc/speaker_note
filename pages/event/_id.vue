@@ -48,13 +48,18 @@ export default {
     }
   },
   computed: {
+    ...eventMapper.mapState(["events"]),
     event_id() {
       return this.$route.params.id
     }
   },
   async mounted() {
     await this.$_auth.auth()
-    this.event = await this.loadEvent({ id: this.event_id })
+    if (this.events[this.event_id]) {
+      this.event = this.events[this.event_id]
+    } else {
+      this.event = await this.loadEvent({ id: this.event_id })
+    }
   },
   methods: {
     ...eventMapper.mapActions(["loadEvent"])

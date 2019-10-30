@@ -28,8 +28,6 @@
 </template>
 
 <script>
-import firebase from "~/service/firebase"
-
 export default {
   name: "Top",
   layout: "guest",
@@ -38,11 +36,14 @@ export default {
   },
   methods: {
     async googleLogin() {
-      const provider = new firebase.auth.GoogleAuthProvider()
-      provider.addScope("https://www.googleapis.com/auth/userinfo.email")
-      const { user } = await firebase.auth().signInWithPopup(provider)
+      const user = await this.$_auth.login()
       if (user) {
-        this.$router.push("/mypage")
+        const path = this.$route.query.redirect
+        if (path) {
+          this.$router.push(path)
+        } else {
+          this.$router.push("/mypage")
+        }
       }
     }
   }

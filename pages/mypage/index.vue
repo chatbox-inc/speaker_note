@@ -17,7 +17,7 @@
           プロフィール編集
         </nuxt-link>
       </div>
-      <nuxt-link to="/mypage/settingStage" class="btn btn-dark float-right">
+      <nuxt-link to="/talk/event/150932" class="btn btn-dark float-right">
         登壇情報を追加
       </nuxt-link>
       <h2 class="mb-3 h3">
