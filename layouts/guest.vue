@@ -1,6 +1,7 @@
 <template>
   <div>
     <l-header />
+    <l-loader v-if="loading" />
     <div class="l-container">
       <nuxt />
     </div>
@@ -9,10 +10,15 @@
 
 <script>
 import lHeader from "~/components/Header"
-
+import lLoader from "~/components/loader"
+import loaderMapper from "~/store/loading"
 export default {
   components: {
-    lHeader
+    lHeader,
+    lLoader
+  },
+  computed: {
+    ...loaderMapper.mapState(["loading"])
   }
 }
 </script>
