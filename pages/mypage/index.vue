@@ -13,7 +13,7 @@
             株式会社hogehoge
           </p>
         </div>
-        <nuxt-link to="#" class="p-mypage__edit">
+        <nuxt-link to="/mypage/edit" class="p-mypage__edit">
           プロフィール編集
         </nuxt-link>
       </div>
