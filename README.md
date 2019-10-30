@@ -35,6 +35,11 @@ $ npm start
 
 # generate static project
 $ npm run generate
+
+# npm run devで "Your API Key is..." になった場合、.env.example をコピーして .env を作成する。
+
 ```
+
+
 
 For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).

@@ -1,3 +1,6 @@
+/**
+ * Firebase の import をするのはここだけ
+ */
 import firebase from "firebase/app"
 import "firebase/auth"
 
