@@ -1,6 +1,7 @@
 <template>
   <div>
     <l-header />
+    <l-loader v-if="loading" />
     <div v-show="user" class="l-container">
       <nuxt />
     </div>
@@ -9,14 +10,20 @@
 
 <script>
 import lHeader from "~/components/Header"
+import lLoader from "~/components/loader"
+import loaderMepper from "~/store/loading"
 export default {
   components: {
-    lHeader
+    lHeader,
+    lLoader
   },
   data() {
     return {
       user: null
     }
+  },
+  computed: {
+    ...loaderMepper.mapState(["loading"])
   },
   async mounted() {
     console.log("mounted")
