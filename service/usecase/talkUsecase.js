@@ -42,3 +42,15 @@ export const putTalk = async ($axios, { event_id, form }) => {
     code: talk.code
   }
 }
+
+export const deleteTalk = async ($axios, { code }) => $axios.$delete(`/talk/event/${code}`)
+
+export const editTalk = async ($axios, { form, talk_id }) => {
+  const { talk } = await $axios.$patch(`/talk/event/${talk_id}`, {
+    talk: form
+  })
+  console.log(talk)
+  return {
+    code: talk.code
+  }
+}

@@ -1,6 +1,7 @@
 import { createNamespacedHelpers } from "vuex"
 
-import { putTalk, getTalk, getTalkList } from "~/service/usecase/talkUsecase"
+import { putTalk, getTalk, getTalkList, deleteTalk } from "~/service/usecase/talkUsecase"
+import { editTalk } from "../service/usecase/talkUsecase"
 
 export default {
   ...createNamespacedHelpers("talk"),
@@ -24,6 +25,13 @@ export default {
     },
     async getTalk(ctx, { code }) {
       return getTalk(this.$axios, { code })
+    },
+    async deleteTalk(ctx, { code }){
+      return deleteTalk(this.$axios, { code })
+    },
+    async editTalk(ctx, { talk_id, form }){
+      const { code } = await editTalk(this.$axios, { talk_id, form })
+      return { code }
     }
   }
 }
