@@ -96,6 +96,9 @@
       <button class="btn btn-primary text-center" @click="submit">
         追加する
       </button>
+      <button class="btn btn-primary text-center" @click="$emit('delete')">
+        削除する
+      </button>
     </div>
   </section>
 </template>

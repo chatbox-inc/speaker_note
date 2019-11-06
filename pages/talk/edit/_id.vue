@@ -3,7 +3,13 @@
     <div class="alert alert-secondary">
       提出頂いた登壇情報は、イベント管理者の確認中です。
     </div>
-    <talk-form :event="event" :origin="form" @submit="submitForm" />
+    <talk-form
+      :event="event"
+      :origin="form"
+      @submit="submitForm"
+      @delete="delTalk"
+      @edit="submitForm"
+    />
   </section>
 </template>
 
@@ -38,20 +44,26 @@ export default {
     this.event = event
   },
   methods: {
-    ...talkMapper.mapActions(["getTalk"]),
-    async submitForm() {
+    ...talkMapper.mapActions(["getTalk", "deleteTalk", "editTalk"]),
+    async submitForm(form) {
       try {
         this.$loader.on()
-        // const { code } = await putTalk(this.$axios, {
-        //   event_id: this.event_id,
-        //   form
-        // })
-        // this.$router.push(`/talk/edit/${code}`)
+        const { code } = await this.editTalk({
+          talk_id: this.talk_code,
+          form
+        })
+        this.$router.push(`/talk/edit/${code}`)
       } catch (error) {
         console.error(error)
       } finally {
         this.$loader.off()
       }
+    },
+    async delTalk() {
+      await this.deleteTalk({
+        code: this.talk_code
+      })
+      this.$router.push("/mypage")
     }
   }
 }
