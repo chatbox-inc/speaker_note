@@ -96,8 +96,8 @@
       <button class="add-button btn btn-primary text-center" @click="submit">
         追加する
       </button>
-      <br>
-      <DeleteModal></DeleteModal>
+      <br />
+      <DeleteModal />
     </div>
   </section>
 </template>
@@ -147,5 +147,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

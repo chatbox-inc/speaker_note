@@ -3,31 +3,35 @@
     <button class="btn text-center bg-danger" @click="openModal">
       削除する
     </button>
-    <div class="delete-modal" v-show="showModal">
+    <div v-show="showModal" class="delete-modal">
       <div class="delete-modal_text">
         <h1>削除しますか？</h1>
-        <button v-on:click="closeModal">close</button>
+        <button @click="closeModal">
+          close
+        </button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default({
+export default {
   el: "delete-button",
-  data: {
-    showModal: false
+  data: function() {
+    return {
+      showModal: false
+    }
   },
-  methods:{
-    openModal: function(){
+  methods: {
+    openModal: function() {
       confirm("hoge")
       this.showModal = true
     },
-    closeModal: function(){
+    closeModal: function() {
       this.showModal = false
     }
   }
-})
+}
 </script>
 
 <style lang="scss" scoped>
@@ -47,7 +51,7 @@ export default({
   background-color: #dadedf;
 
   &_text {
-    z-index:2;
+    z-index: 2;
     width: 50%;
     padding: 1px;
     background: #fff;
