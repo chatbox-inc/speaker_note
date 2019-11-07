@@ -38,7 +38,25 @@
             <h4 class="list-group-item-heading">
               {{ item.title }}
             </h4>
-            <a class="list-group-item-text">{{ item.person }}</a>
+            <div class="list-group-item-text">
+              {{ item.person }}
+            </div>
+            <div class="select-btn">
+              <select v-model="selected[item.id]">
+                <option disabled value="">
+                  選んでください
+                </option>
+                <option value="1">
+                  許可
+                </option>
+                <option value="2">
+                  不許可
+                </option>
+                <option value="3">
+                  要相談
+                </option>
+              </select>
+            </div>
           </div>
         </div>
       </div>
@@ -56,26 +74,32 @@ export default {
       event: null,
       items: [
         {
+          id: 1,
           title: "Vueについて",
           person: "taro"
         },
         {
+          id: 2,
           title: "楽しいVue",
           person: "hanako"
         },
         {
+          id: 3,
           title: "AWSのはなし",
           person: "tanaka"
         },
         {
+          id: 4,
           title: "AWSのはなし",
           person: "tanaka"
         },
         {
+          id: 5,
           title: "AWSのはなし",
           person: "tanaka"
         }
-      ]
+      ],
+      selected: {}
     }
   },
   computed: {
@@ -104,5 +128,8 @@ export default {
 }
 .speaker-list {
   margin-bottom: 40px;
+}
+.select-btn {
+  text-align: right;
 }
 </style>
