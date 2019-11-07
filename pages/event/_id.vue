@@ -42,7 +42,7 @@
               {{ item.person }}
             </div>
             <div class="select-btn">
-              <select v-model="selected[item.id]">
+              <select v-model="selected[item.id]" v-on:change="selectfunc(item.id,value)">
                 <option disabled value="">
                   選んでください
                 </option>
@@ -85,17 +85,17 @@ export default {
         },
         {
           id: 3,
-          title: "AWSのはなし",
+          title: "AWSのはなし1",
           person: "tanaka"
         },
         {
           id: 4,
-          title: "AWSのはなし",
+          title: "AWSのはなし2",
           person: "tanaka"
         },
         {
           id: 5,
-          title: "AWSのはなし",
+          title: "AWSのはなし3",
           person: "tanaka"
         }
       ],
@@ -117,8 +117,11 @@ export default {
     }
   },
   methods: {
-    ...eventMapper.mapActions(["loadEvent"])
-  }
+    ...eventMapper.mapActions(["loadEvent"]),
+    selectfunc: function(n,value){
+      console.log(n,value)
+    }
+  },
 }
 </script>
 
