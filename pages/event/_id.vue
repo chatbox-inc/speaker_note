@@ -42,7 +42,10 @@
               {{ item.person }}
             </div>
             <div class="select-btn">
-              <select v-model="selected[item.id]" v-on:change="selectfunc(item.id,value)">
+              <select
+                v-model="selected[item.id]"
+                @change="selectfunc(item.id, value)"
+              >
                 <option disabled value="">
                   選んでください
                 </option>
@@ -118,10 +121,10 @@ export default {
   },
   methods: {
     ...eventMapper.mapActions(["loadEvent"]),
-    selectfunc: function(n,value){
-      console.log(n,value)
+    selectfunc: function(n, value) {
+      console.log(n, value)
     }
-  },
+  }
 }
 </script>
 
