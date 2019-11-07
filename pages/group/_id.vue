@@ -5,7 +5,11 @@
         <div class="group">
           <h3>関西フロントエンドUG</h3>
           <div class="group-event">
-            <div v-for="item of items" class="list-group-item">
+            <div
+              v-for="item of items"
+              :key="item.title"
+              class="list-group-item"
+            >
               <a class="list-group-item-text test">{{ item.date }}</a>
               <router-link :to="{ path: `/event/150932` }">
                 <h4 class="list-group-item-heading">
